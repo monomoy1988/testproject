@@ -1,0 +1,49 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Legend Manager</h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary" style="padding-bottom:40px;">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Legend</h3>
+                    </div>
+                    <div class="formsection">
+                        <h6 class="form-grouptext"> All the fields marked "*" are required fields and must be filled.</h6>
+                        <form role="form" angular-validator-submit="dosubmit()" name="dosubmitform" novalidate angular-validator>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label >Abreviation</label>
+                                    <input type="text" class="form-control"  placeholder="Abreviation" name="abreviation"
+                                           ng-model="form.abreviation"
+                                           required-message="'Abreviation can not be blank.'"
+                                           required>
+                                </div>
+                                <div  class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control"  placeholder="Title" name="title"
+                                           ng-model="form.title"
+                                           required-message="'Title can not be blank.'"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label >Priority</label>
+                                    <input type="number" class="form-control"  placeholder="Priority" name="priority"
+                                           ng-model="form.priority"
+                                           required-message="'Priority can not be blank.'"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="background:none; height:auto; padding-bottom:0px; padding-top:0px;">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

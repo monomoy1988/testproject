@@ -1,0 +1,935 @@
+<!--<img src="images/backend_header.png" alt="#" style="width:100%;">
+
+
+
+<div  class="adminnewwrapper"><img src="images/backend_header_search.png" alt="#" style=" display:block;   width:100%;"></div>-->
+
+
+
+<div class="container-fluid myaccountheader" style="margin-bottom: 30px;">
+
+  <div class="row">
+
+    <div class="container myaccountcontainer">
+
+       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"> <div class="myaccountlogo"> <a ui-sref="index"><img alt="#" src="../images/logo.png"></a></div></div>
+
+       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+       
+
+       <div class="myaccountheader_detail">
+
+       
+
+      <!-- <div class="maheaderblog1"><span><a href="javascript:void(0)">English</a></span></div>-->
+
+       
+
+       <div ng-if="userrole != 7 "  class="maheaderblog2 hide"><a ui-sref="plans" href="javascript:void(0)">SEE PLANS & PRICING</a></div>
+
+       
+
+      <!--  <div class="maheaderblog3"><span><a href="javascript:void(0)">Saved</a></span></div>-->
+
+
+
+           <button type="button" class="fontwebtourbtn" data-toggle="modal" data-target="#legendsmodal">LEGENDS</button>
+           <button type="button" class="fontwebtourbtn" data-toggle="modal" data-target="#fwebtourmodal1">Start Web Tour</button>
+
+    <div ng-if="userrole != 4 "  class="maheaderblog5"> <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Notifications <span class="badge">{{notdownloadcount}}</span></button>
+
+    
+
+    <div class="dropdown-menu notificationdropdown">
+
+    
+
+    <div class="notificationwrapper" ng-if="notdownloadcount>0">
+
+      <div class="row"  ng-repeat="fitem in filenotdownloaded track by fitem.id">
+
+       <div class="notificationimg" style="border: none">
+
+           <!--<img  alt="User Image" src="images/user2-160x160.jpg">-->
+
+           <span class="{{fitem.file_type.toLowerCase()}}_icon"></span>
+
+
+
+       </div>
+
+       
+
+        <div ui-sref="mydownloads({id:fitem.catids})" class="notificationtext">
+
+        A new file  <strong>{{fitem.file_name}}</strong>  uploaded on
+
+        
+
+        
+
+        <label>{{fitem.timeadded}}</label>
+
+
+        
+
+        </div>
+
+        
+
+           <div class="clear"></div>
+
+        </div>
+
+        
+
+        
+
+        
+
+      
+
+      
+
+      
+
+     <!--   <div class="row">
+
+            <div class="notificationimg"><img  alt="User Image" src="images/user2-160x160.jpg"></div>
+
+       
+
+            <div class="notificationtext">
+
+                Reminder: You have an event coming up this week: <strong>Free Digital Marketing Seminar In Kolkata</strong>
+
+        
+
+        
+
+                <label>Monday, May 2, 2016 at 9:01am</label>
+
+        
+
+            </div>
+
+        
+
+            <div class="clear"></div>
+
+        </div>
+
+        -->
+
+        
+
+
+
+    
+
+     </div>
+
+  </div>
+
+    
+
+    </div>
+
+    
+
+    
+
+    
+
+        
+
+    <div class="maheaderblog6"> <button type="button" class="btn btn-primary dropdown-toggle" id="cartbtn" data-toggle="dropdown">Cart <span class="badge">{{filecartarr.length}}</span>  </button>
+
+    
+
+    <div ng-if="filecartarr.length >0" class="dropdown-menu shoppingdropdown">
+
+    
+
+      <h4>Shopping Bag</h4>
+
+        <div class="shoppingwrapper">
+
+       
+
+       <div class="shoppingrow" ng-repeat="item in filecartarr track by item.id">
+
+            <div class="shopbox_pro">
+
+                <!--<img alt="#" src="images/events_banner_drone.png">-->
+
+                <span class="{{item.file_type}}_icon"></span>
+
+            </div>
+
+            <div class="shopbox_name">{{item.name}} </div>
+
+            <!--<div class="shopbox_price"><span>1</span> x <strong>$44.95</strong></div>-->
+
+            <div class="shopbox_close"><img ng-click="delfilecart(item.id)" alt="#" src="../images/shopclose.png"></div>
+
+          <div class="clearfix"></div>
+
+          </div>
+
+          
+
+  </div>
+
+    
+
+      <a  href="javascript:void(0)"  ng-click="downloadcart()" class="downloadbagbtn"> Download </a>
+
+  </div>
+
+    
+
+    </div>
+
+    
+
+    
+
+    
+
+
+
+        
+
+         <div class="maheaderblog4" ><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Hi, {{userfullname}} <span class="caret"></span></a>
+
+       <div class="mauserblock dropdown-menu">
+       
+       <div class="mauserblocksub">
+
+         <img class="img-circle" alt="User Image" src="../images/user2-160x160.jpg">
+         
+         
+
+         <h4>{{username}}</h4>
+
+         
+
+         <a class="signoutbtn2" ng-click="logout()">Sign out</a>
+
+         
+
+         </div>
+
+         </div>
+
+         
+
+         </div>
+
+
+
+         
+
+         
+
+         
+
+         
+
+       
+
+       
+
+       
+
+       <div class="clear"></div>
+
+       
+
+       
+
+       </div>
+
+       
+
+       </div>
+
+    
+
+    
+
+    
+
+      <div class="clear"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--
+
+<div  class="adminnewwrapper">
+
+  <div class="gallerytopleftsearch_ma">
+
+  
+
+  <div class="stockphoto_selectoption_ma">
+
+<select>
+
+<option value="all">All</option>
+
+<option value="image">Images</option>
+
+<option value="video">Videos</option>
+
+</select>
+
+</div>
+
+
+
+<div class="stockphoto_inputoption_ma">
+
+<input class="stockphotosearch_ma" type="text" placeholder="Search Category">
+
+<input class="stockphotobtn_ma" type="button">
+
+<div class="clear"></div>
+
+</div>
+
+
+
+<div class="clear"></div>
+
+    
+
+  
+
+  </div>
+
+
+
+
+
+</div>
+
+-->
+
+
+<div class="modal fade legendsmodalcon" id="legendsmodal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2>LEGENDS</h2>
+
+                <table>
+                    <tr><th>Abreviation</th><th>Title</th></tr>
+                    <!--<tr><td>SHL</td><td>Shareholders List</td></tr>
+                    <tr><td>SPA</td><td>Stock Purchase Agreements</td></tr>
+                    <tr><td>Brd Cons</td><td>Board Consents</td></tr>
+                    <tr><td>Sh Cons</td><td>Shareholder Consents</td></tr>
+                    <tr><td>SPR</td><td>Security Position Report</td></tr>
+                    <tr><td>Stock Order</td><td>Stock Order</td></tr>
+                    <tr><td>Empl Agmt</td><td>Employment Agreement</td></tr>
+                    <tr><td>Opin Ltr</td><td>Opinion Letter</td></tr>
+                    <tr><td>Ltrs</td><td>Letters</td></tr>
+                    <tr><td>Prom Note</td><td>Promissory Note</td></tr>
+                    <tr><td>LOI</td><td>Letter of Intent</td></tr>
+                    <tr><td>Sub Agmt</td><td>Subscription Agreement</td></tr>
+                    <tr><td>Stock Pwr</td><td>Stock Power</td></tr>
+                    <tr><td>Stock Ord</td><td>Stock Order</td></tr>-->
+                    <tr ng-repeat="item in legendlist"><td>{{item.abreviation}}</td><td>{{item.title}}</td></tr>
+                </table>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal1" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img1.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <!-- <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#webtourmodal2" />
+                     <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />-->
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal2" ng-click="accountmodal1()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal2" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img2.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal1"  ng-click="accountmodal2()"/>
+                     <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal3" ng-click="accountmodal2()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal3" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img3.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal2" ng-click="accountmodal3()" />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal4" ng-click="accountmodal3()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal4" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img4.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal3" ng-click="accountmodal4()" />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal5" ng-click="accountmodal4()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal5" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img5.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal4" ng-click="accountmodal5()" />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal6" ng-click="accountmodal5()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal6" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img6.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal5"  ng-click="accountmodal6()"/>
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal7" ng-click="accountmodal6()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal7" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img7.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal6"  ng-click="accountmodal7()"/>
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal8" ng-click="accountmodal7()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal8" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img8.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal7" ng-click="accountmodal8()" />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal9" ng-click="accountmodal8()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal9" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img9.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal8" ng-click="accountmodal9()"/>
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal10" ng-click="accountmodal9()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal10" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img10.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal9" ng-click="accountmodal10()"  />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal11" ng-click="accountmodal10()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal11" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img11.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal10"  ng-click="accountmodal11()"/>
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal12" ng-click="accountmodal11()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal12" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img12.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal11" ng-click="accountmodal12()"/>
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal13" ng-click="accountmodal12()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal13" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img13.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal12"  ng-click="accountmodal13()" />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal14" ng-click="accountmodal13()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal14" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img14.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal13"  ng-click="accountmodal14()"/>
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal15" ng-click="accountmodal14()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal15" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img15.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal14"  ng-click="accountmodal15()" />
+                    <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal16" ng-click="accountmodal15()"  />
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+
+<!-------------------------------------------------->
+
+<div class="modal fade webtourmodalcontain" id="fwebtourmodal16" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img src="../images/frontend_img15.jpg" alt="#" class="web_tourimg" />
+
+
+
+                <img src="../images/skipbtn.png" alt="#" class="web_tourskipbtn" data-dismiss="modal" />
+
+                <div class="modal_nextprev">
+                    <img src="../images/prevbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal15"  ng-click="accountmodal16()" />
+                   <!-- <img src="../images/btndevider.png" alt="#" style="width: 1%; margin: 0 5%"   />
+                    <img src="../images/nextbtn.png" alt="#"  data-toggle="modal" data-target="#fwebtourmodal16" ng-click="hidemodal1()"  />
+-->
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-------------------------------------------------->
+
+<div id="mydiv" ng-show='stateIsLoading'>
+    <div class="loader"></div>
+</div>

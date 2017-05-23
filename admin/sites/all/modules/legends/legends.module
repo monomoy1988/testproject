@@ -1,0 +1,212 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: debasis
+ * Date: 16/6/15
+ * Time: 12:04 AM
+ */
+
+header('Content-type: text/html');
+header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Max-Age: 1000');
+header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+function legends_init() // init function called by defaulted when this module loaded by system
+{
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+}
+
+function legends_menu()
+{
+    $items = array();
+
+    $items['legends/add'] = array(
+        'title' => 'Add legends',
+        'page callback' => 'addlegends',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['legends/list'] = array(
+        'title' => 'legends List',
+        'page callback' => 'legendslist',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['legends/delete'] = array(
+        'title' => 'legends Delete',
+        'page callback' => 'deletelegends',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+   $items['legends/details'] = array(
+        'title' => 'legends details',
+        'page callback' => 'legendsdetails',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['legends/update'] = array(
+        'title' => 'junglecategory Updates',
+        'page callback' => 'legendsupdates',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+
+    $items['legends/updatestatus'] = array(
+        'title' => 'legends Updates Status',
+        'page callback' => 'legendsstatupdates',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+
+
+    return $items;
+}
+
+
+function legendsdetails(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $queryu = db_select('legends', 'l');
+    $queryu->fields('l')
+        ->condition('l.id', $_POST['id'], '=');
+    $resultu = $queryu->execute();
+
+    while($recordu = $resultu->fetchAssoc()) {
+        $temparray=$recordu;
+        $legendsdetails=$temparray;
+     }
+    echo json_encode(@$legendsdetails);
+
+}
+
+
+function legendslist()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $legendslist = array();
+
+
+    $queryu = db_select('legends', 'l');
+     $queryu->fields('l');
+
+    if( $_REQUEST['filter']=='status'){
+        $queryu->condition('l.status',1,'=')  ;
+    }
+
+    if( $_REQUEST['order']=='priority'){
+        $queryu->orderBy('l.priority','ASC')  ;
+    }
+
+    $resultu = $queryu->execute();
+
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        while ($recordu = $resultu->fetchAssoc()) {
+            $temparray=$recordu;
+
+            $legendslist[$i]= $temparray;
+            $i++;
+        }
+    }
+
+    echo json_encode(@$legendslist);
+
+}
+
+function addlegends(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $query = db_insert('legends')->fields(array('abreviation','title','priority','status'));
+
+    $query->values(array(@$_POST['abreviation'],@$_POST['title'],intval($_POST['priority']),1));
+
+    $query->execute();
+
+    $data['status'] = 'success';
+    echo json_encode($data);
+    return;
+}
+function legendsupdates(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    db_update('legends')
+        ->fields(array('abreviation'=>@$_POST['abreviation'],'title'=>@$_POST['title'],'priority'=>intval($_POST['priority'])))
+        ->condition('id', intval($_POST['id']))
+         ->execute();
+}
+
+
+
+function deletelegends(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $num_deleted = db_delete('legends')
+        ->condition('id', @$_POST['id'])
+        ->execute();
+
+}
+
+function legendsstatupdates(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $status=1-intval($_POST['status']);
+    $query=db_update('legends')
+        ->fields(array('status'=>@$status))
+        ->condition('id', intval($_POST['id']))
+        ->execute();
+
+    echo "true";
+}
+
+
+
+

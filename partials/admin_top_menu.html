@@ -1,0 +1,56 @@
+<style>
+body{ background:#d5dbd2!important;}
+</style>
+
+<header class="main-header">
+
+  <a  ui-sref="dashboard" class="logo">
+    <span class="logo-mini" style="background:#fff;">
+      <img src="../images/logo1.jpg" alt="#" style="width:100%; display:block; margin:10px auto;">
+    </span>
+    <span class="logo-lg" style="background:#fff;">
+      <img src="../images/logo1.png" alt="#" style="width: 74%;">
+    </span>
+  </a>
+
+  <nav class="navbar navbar-static-top" role="navigation">
+    <a href="javascript:void(0)" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="tohome">
+      <a href="javascript:void(0);" ui-sref="index">
+        <span><img src="../images/home_iconadmin.png" alt="#"> westcoastvg.online</span>
+      </a>
+    </div>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu user-manu-dropdown"  ng-click="toggledropdown()">
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="../images/user2-160x160.jpg" class="user-image" alt="User Image">
+            <span class="hidden-xs">{{userfullname}}</span>
+          </a>
+          <ul class="dropdown-menu useraccountdic">
+            <li class="user-header">
+                <div class="userheaderdiv">
+              <img src="../images/user2-160x160.jpg" class="img-circle" alt="User Image" style="width: 40%; margin: 15px auto;">
+              <p>{{userfullname}}</p>
+                </div>
+            </li>
+            <li class="user-footer" style="text-align: center;">
+
+                <a href="javascript:void(0)" ng-click="logout()" class="btn btn-default btn-flat signoutbtn"><span  style="color: #fff!important;">Sign out</span></a>
+
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0)" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div id="mydiv" ng-show='stateIsLoading'>
+  <div class="loader"></div>
+</div>

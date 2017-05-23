@@ -1,0 +1,58 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for jungle category
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function legends_schema() {
+    $schema = array();
+
+    $schema['legends'] = array(
+        'description' => 'legends Table',
+        'fields' => array(
+            'id' => array(
+                'description' => 'Primary Key id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+             'abreviation' => array(
+                 'description' => 'abreviation',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+             'title' => array(
+                 'description' => 'title',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+
+              'priority' => array(
+                  'description' => 'priority',
+                  'type' => 'int',
+                  'length' => '11',
+                  'not null' => TRUE,
+                  'default' => 0,
+              ),
+
+             'status' => array(
+                 'description' => 'status',
+                 'type' => 'int',
+                 'length' => '11',
+                 'not null' => TRUE,
+                 'default' => 0,
+             ),
+
+
+        ),
+        'primary key' => array('id'),
+
+    );
+    return $schema;
+}
