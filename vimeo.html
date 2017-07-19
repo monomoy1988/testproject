@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vimeo Api Test</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <script type="text/javascript">
+
+        var i=0;
+        $(function(){
+
+            var varr=new Array(76979871,76979876,76979859,76979878,76979879);
+            var iframe = $('#PLAYER1');
+            var player = new Vimeo.Player(iframe);
+
+            player.on('ended', function() {
+                console.log('Finished.');
+                console.log(varr);
+                i++;
+                if(varr.length>i)
+                $('#playerdiv').html('<iframe id="PLAYER'+i+'" src="https://player.vimeo.com/video/'+varr[i]+'?player_id=PLAYER'+i+'&autoplay=true" width="630" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+                resetplayer();
+
+            });
+
+            function resetplayer() {
+                var iframe = $('#PLAYER'+i);
+                var player = new Vimeo.Player(iframe);
+                player.on('ended', function() {
+                    console.log('Finished.');
+                    console.log(varr);
+                    i++;
+                    if(varr.length>i)
+                        $('#playerdiv').html('<iframe id="PLAYER'+i+'" src="https://player.vimeo.com/video/'+varr[i]+'?player_id=PLAYER'+i+'&autoplay=true" width="630" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+                    resetplayer();
+
+                });
+
+            }
+        });
+
+    </script>
+</head>
+
+
+
+<div id="playerdiv"><iframe id="PLAYER1" src="https://player.vimeo.com/video/76979871?player_id=PLAYER1&autoplay=true" width="630" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+
+</body>
+</html>
